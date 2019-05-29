@@ -27,7 +27,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import de.dhbw.DHBWVVS.model.Location;
+import de.dhbw.DHBWVVS.model.location.Location;
 import de.dhbw.DHBWVVS.model.request.InitialInput;
 import de.dhbw.DHBWVVS.model.request.LocationInformationRequest;
 import de.dhbw.DHBWVVS.model.request.RequestPayload;

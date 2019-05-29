@@ -12,9 +12,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import de.dhbw.DHBWVVS.model.GeoPosition;
-import de.dhbw.DHBWVVS.model.Location;
-import de.dhbw.DHBWVVS.model.Mode;
+import de.dhbw.DHBWVVS.model.location.GeoPosition;
+import de.dhbw.DHBWVVS.model.location.Location;
+import de.dhbw.DHBWVVS.model.location.Mode;
+import de.dhbw.DHBWVVS.model.location.Point;
+import de.dhbw.DHBWVVS.model.location.PointOfInterest;
+import de.dhbw.DHBWVVS.model.location.StopPoint;
 
 public class LocationResponse {
 
@@ -95,9 +98,37 @@ public class LocationResponse {
 				NodeList nLocationName = n.getChildNodes();
 				location.setName(nLocationName.item(0).getTextContent());
 				location.setLanguage(nLocationName.item(1).getTextContent());
+			} else if (n.getNodeName().equalsIgnoreCase("StopPoint")) {
+				location.setPoint(stoppoint(n));
+			} else if(n.getNodeName().equalsIgnoreCase("PointOfInterest")) {
+				PointOfInterest poi = new PointOfInterest();
+				poi.setType("PointOfInterest");
+				location.setPoint(poi);
 			}
 		}
 		return location;
+	}
+
+	private static Point stoppoint(Node n) {
+
+		StopPoint stopPoint = new StopPoint();
+		stopPoint.setType("StopPoint");
+		
+		NodeList list = n.getChildNodes();
+
+		for (int i = 0; i < list.getLength(); i++) {
+			Node node = list.item(i);
+			if(node.getNodeName().equalsIgnoreCase("StopPointRef")) {
+				stopPoint.setRef(node.getTextContent());
+			} else if(node.getNodeName().equalsIgnoreCase("LocalityRef")) {
+				stopPoint.setLocalityRef(node.getTextContent());
+			} else if(node.getNodeName().equalsIgnoreCase("StopPointName")) {
+				stopPoint.setText(node.getChildNodes().item(0).getTextContent());
+				stopPoint.setLanguage(node.getChildNodes().item(1).getTextContent());
+			}
+		}
+
+		return stopPoint;
 	}
 
 }

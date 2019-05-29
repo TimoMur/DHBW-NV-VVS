@@ -1,4 +1,4 @@
-package de.dhbw.DHBWVVS.model;
+package de.dhbw.DHBWVVS.model.location;
 
 import java.util.List;
 
