@@ -6,7 +6,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+import de.dhbw.DHBWVVS.model.request.location.ServiceRequest;
+
+@XmlRootElement(name="Trias")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Trias {
 

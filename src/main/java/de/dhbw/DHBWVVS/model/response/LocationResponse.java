@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import de.dhbw.DHBWVVS.model.location.GeoPosition;
-import de.dhbw.DHBWVVS.model.location.Location;
+import de.dhbw.DHBWVVS.model.location.LocationDAO;
 import de.dhbw.DHBWVVS.model.location.Mode;
 import de.dhbw.DHBWVVS.model.location.Point;
 import de.dhbw.DHBWVVS.model.location.PointOfInterest;
@@ -21,7 +21,7 @@ import de.dhbw.DHBWVVS.model.location.StopPoint;
 
 public class LocationResponse {
 
-	public static List<Location> process(String responseText) throws Exception {
+	public static List<LocationDAO> process(String responseText) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		InputSource is = new InputSource(new StringReader(responseText));
@@ -37,12 +37,12 @@ public class LocationResponse {
 
 		NodeList locationsNodes = locationInformationNode.getChildNodes();
 
-		List<Location> locations = new ArrayList<Location>();
+		List<LocationDAO> locations = new ArrayList<LocationDAO>();
 
 		for (int i = 0; i < locationsNodes.getLength(); i++) {
 			NodeList c = locationsNodes.item(i).getChildNodes();
 
-			Location location = new Location();
+			LocationDAO location = new LocationDAO();
 			List<Mode> modes = new ArrayList<Mode>();
 
 			for (int j = 0; j < c.getLength(); j++) {
@@ -81,7 +81,7 @@ public class LocationResponse {
 
 	}
 
-	private static Location location(Location location, Node nLocation) {
+	private static LocationDAO location(LocationDAO location, Node nLocation) {
 
 		NodeList nodeList = nLocation.getChildNodes();
 

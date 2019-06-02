@@ -2,7 +2,7 @@ package de.dhbw.DHBWVVS.model.location;
 
 import java.util.List;
 
-public class Location {
+public class LocationDAO {
 
 	private Point point;
 	private String name;

@@ -5,6 +5,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 
+import de.dhbw.DHBWVVS.model.request.departure.StopEventRequest;
+import de.dhbw.DHBWVVS.model.request.location.LocationInformationRequest;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RequestPayload {
 

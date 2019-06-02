@@ -1,8 +1,10 @@
-package de.dhbw.DHBWVVS.model.request;
+package de.dhbw.DHBWVVS.model.request.location;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+
+import de.dhbw.DHBWVVS.model.request.Request;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LocationInformationRequest  extends Request {
