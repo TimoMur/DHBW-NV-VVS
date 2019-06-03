@@ -58,8 +58,6 @@ public class DepartureResponse {
 		
 		for (int i = 0; i < situationsNodes.getLength(); i++) {
 			
-			
-			
 		}
 		
 		return null;
