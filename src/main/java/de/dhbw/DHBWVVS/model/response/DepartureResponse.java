@@ -123,10 +123,12 @@ public class DepartureResponse {
 				DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 				LocalDateTime timetabledTime = LocalDateTime.parse(n.getChildNodes().item(0).getTextContent(),
 						formatter);
+				thisCall.setTimetabledTime(timetabledTime);
+				if(n.getChildNodes().item(1) != null) {
 				LocalDateTime estimatedTime = LocalDateTime.parse(n.getChildNodes().item(1).getTextContent(),
 						formatter);
-				thisCall.setTimetabledTime(timetabledTime);
-				thisCall.setEstimatedTime(estimatedTime);
+					thisCall.setEstimatedTime(estimatedTime);
+				}
 			} else if (n.getNodeName().equalsIgnoreCase("SituationFullRef")) {
 				thisCall.setParticipantRef(n.getChildNodes().item(0).getTextContent());
 				thisCall.setSituationNumber(Integer.parseInt(n.getChildNodes().item(1).getTextContent()));
