@@ -15,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,7 @@ import de.dhbw.DHBWVVS.model.response.DepartureResponse;
 
 @RestController
 @RequestMapping("/departure")
+@CrossOrigin
 public class StopEventController {
 
 	@Value("${ref}")
@@ -93,7 +95,6 @@ public class StopEventController {
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			StringWriter sw = new StringWriter();
 			jaxbMarshaller.marshal(trias, sw);
-			System.out.println(sw.toString());
 
 			HttpClient client = HttpClient.newHttpClient();
 			
