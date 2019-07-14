@@ -8,6 +8,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -49,12 +51,15 @@ public class StopEventController {
 	@GetMapping
 	public DepartureDAO departures(@RequestParam(name = "locRef", required = true) String locRef) {
 
+		String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date(System.currentTimeMillis() + (5 * (60000))));
+		
 		Trias trias = new Trias();
 
 		StopEventRequest request = new StopEventRequest();
 		Location location = new Location();
 		LocationRef locationRef = new LocationRef(locRef);
 		location.setLocationRef(locationRef);
+		location.setDepArrTime(currentTime);
 
 		/*
 		 * Request parameter: - Departure - Max. 20 results - Realtime data should be
@@ -62,7 +67,7 @@ public class StopEventController {
 		 */
 		Parameter params = new Parameter();
 		params.setIncludeRealtimeData(true);
-		params.setNumberOfResults(20);
+		params.setNumberOfResults(10);
 		params.setStopEventType(StopEventType.DEPARTURE.toString());
 
 		/*
@@ -85,7 +90,7 @@ public class StopEventController {
 
 		ServiceRequest serviceRequest = new ServiceRequest();
 		serviceRequest.setRequestorRef(ref);
-		serviceRequest.setRequestTimestamp("2019-05-24T16:00:00");
+		serviceRequest.setRequestTimestamp(currentTime);
 		serviceRequest.setPayload(requestPayload);
 		trias.setRequest(serviceRequest);
 
